@@ -1,5 +1,5 @@
 ---
-title: "jwhollister"
+title: "Jeffrey W. Hollister"
 ---
 
 This is a Quarto website.
