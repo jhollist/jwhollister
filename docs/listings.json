@@ -2,8 +2,6 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/post-with-code/index.html",
-      "/posts/welcome/index.html",
       "/posts/what-goes-up-must-blogdown-version-3-or-4-of-jwhollister-com/index.html",
       "/posts/rstudio-server-on-a-chromebook/index.html",
       "/posts/chromebook-4-rstats/index.html",
