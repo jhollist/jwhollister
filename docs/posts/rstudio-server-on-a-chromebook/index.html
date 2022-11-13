@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2018-01-18">
+
+<title>jwhollister - Rstudio Server On A Chromebook</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">jwhollister</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Rstudio Server On A Chromebook</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 18, 2018</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>The only post I got around to writing in 2017 was a single messy, evoloving set of notes on how to set up a Chromebook with R and RStudio. This post is a reprise of that one as well as post #1 in my effort to double my blog output from 2017 (I’m shooting for the stars on that goal). In this post I will detail how to set up RStudio Server in a crouton chroot and access it directly via Chrome without having to fire up a separate X11 window.</p>
+<section id="why-rstudio-server" class="level2">
+<h2 class="anchored" data-anchor-id="why-rstudio-server">Why RStudio Server?</h2>
+<p>I have been succesfully using RStudio Desktop on my Chromebook all year and it has worked great. But there have been a few issues that have kind of bothered me. The top four of these are: opening web pages from RStudio, opening documents (PDF or Word), overall look and feel, and (the big one) not being able to pull out a source tab into a separate window. None of these are deal breakers, but they did lead to a bit of a bumpy workflow at times. I did not have these problems when accessing RStudio Server in the browser, but I don’t want to pay for servers to host RStudio Server nor do I want to require an internet connection to work. I figured I could stand up RStudio Server in a chroot, access it directly in Chrome via <code>localhost</code> and have a much more native ChromeOS feeling experience.</p>
+<p>The long and short of it is that it is pretty easy to get set up (if you are comfortable setting up crouton) and the overall experience is much improved with web pages and documents just opening up in new tabs as you’d expect. The biggest improvement is now I can pull out those source tabs into a stand alone window and take advantage of the real estate of dual screens!</p>
+<p>So enough yammering, how do you do it?</p>
+</section>
+<section id="install-crouton-and-set-up-your-chroot" class="level2">
+<h2 class="anchored" data-anchor-id="install-crouton-and-set-up-your-chroot">Install crouton and set up your chroot</h2>
+<p>There are a lot of great resources for installing crouton so no need for me to go over that again. In particular take a look at <a href="https://github.com/jennybc/operation-chromebook">Jenny Bryan’s notes</a> and the <a href="https://github.com/dnschneid/crouton">crouton repository</a></p>
+<p>For RStudio Server we don’t need a full desktop so I decided to try this with a minimal install. I chose core and cli-extra because, frankly, I didn’t know the difference between the two and was just playing it safe. You can choose to encrypt the chroot or not. I didn’t as I was playing around with auto-starting the chroot when Chrome OS starts (<a href="https://github.com/dnschneid/crouton/wiki/Autostart-crouton-chroot-at-ChromeOS-startup">see here for more on that</a>). Never got that part of it working right.</p>
+<p><em>update 2018-01-28:</em> With just core and cli-extra you are missing a few things. Most notably for me, sound was not working correctly. And well, I need <a href="https://cran.r-project.org/package=beepr">Rasmus Bååth’s beepr package</a>. Adding the <code>extension</code> target fixed this.</p>
+<p><em>update 2018-01-30:</em> While extension fixed the audio issue, I was still having problems with RStudio Server and R Session getting discombobulated. I tried a full desktop install and that appears to be working much better. So the idea of using the minimal install wasn’t so great as some needed tooling was obviously missing. The rest of this post has been updated to reflect this.</p>
+<p>Anyway, here is what I used to get my chroot set up.</p>
+<pre><code>sudo sh ~/Downloads/crouton -t xfce,extension -n rstudio</code></pre>
+<p>Once that finishes (it takes a while), you can hop into the chroot with</p>
+<pre><code>sudo enter-chroot</code></pre>
+</section>
+<section id="install-r" class="level2">
+<h2 class="anchored" data-anchor-id="install-r">Install R</h2>
+<p>With a shiny new chroot started, we can now start all of our installs. First one is R.</p>
+<pre><code>sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
+gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+gpg -a --export E084DAB9 | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install r-base r-base-dev</code></pre>
+</section>
+<section id="install-rstudio-server" class="level2">
+<h2 class="anchored" data-anchor-id="install-rstudio-server">Install RStudio Server</h2>
+<p>Next, we need to install RStudio Server. This grabs the latest and greatest version as of January 2018. I choose to delete the <code>.deb</code> just to keep the footprint of this thing to a minimum.</p>
+<pre><code>sudo apt-get install gdebi-core
+wget https://download2.rstudio.org/rstudio-server-1.1.419-amd64.deb
+sudo gdebi rstudio-server-1.1.419-amd64.deb
+rm rstudio-server-1.1.419-amd64.deb</code></pre>
+<p>As an aside, I got distracted when I started working on this section. I wanted to be able to download the current version of RStudio Server without actually knowing what that version was. Luckily, RStudio lists those as <code>XML</code> at <a href="https://downloads2.rstudio.org" class="uri">https://downloads2.rstudio.org</a>. Unluckily, I know next to nothing about working with <code>XML</code> so this code certainly reflects that as I convert to string and parse that for the current version. If you are interested, here’s the function that gets the current version of RStudio Server. Also if you have thoughts on a more direct root (seems like it could be done within the <code>XML</code> itself), let me know in the comments.</p>
+<pre><code>get_rstudio_server &lt;- function(arch = c("amd64","i386","i686","x86_64"),
+                               file_type = c(".deb",".rpm"),
+                               pro = FALSE, get = TRUE){
+  arch &lt;- match.arg(arch)
+  file_type &lt;- match.arg(file_type)
+  url &lt;- 'https://download2.rstudio.org'
+  dat &lt;- xml2::read_xml(url)
+  dat_txt &lt;- xml2::xml_text(xml2::xml_children(dat)) 
+  current &lt;- dat_txt[stringr::str_detect(dat_txt,"current")]
+  current_date &lt;- stringr::str_sub(current,12,21)
+  deb_files &lt;- dat_txt[stringr::str_detect(dat_txt,current_date)]
+  deb_files &lt;- deb_files[stringr::str_detect(deb_files,paste0(arch,file_type))]
+  if(length(deb_files) == 0){
+    stop("Not a valid arch and file_type combination")
+  }
+  if(pro){
+    deb_file &lt;- deb_files[stringr::str_detect(deb_files, "pro")]
+  } else {
+    deb_file &lt;- deb_files[!stringr::str_detect(deb_files, "pro")]
+  }
+  deb_file &lt;- stringr::str_sub(deb_file,1,
+                               stringr::str_locate(deb_file,current_date)[1]-1)
+  deb_file &lt;- deb_file[1]
+  if(get){
+    httr::GET(paste0(url,"/",deb_file),httr::write_disk(deb_file, overwrite = TRUE),
+              httr::progress())
+  }
+  deb_file
+}</code></pre>
+</section>
+<section id="open-up-firewall" class="level2">
+<h2 class="anchored" data-anchor-id="open-up-firewall">Open up firewall</h2>
+<p>Since this is RStudio server, we will be accessing it via Chrome and will need to make sure the requests get through the chroot’s firewall. We need to open that up to do so. I include the <code>nano</code> install because it is a little easier to work with than <code>vim</code>.</p>
+<pre><code>sudo apt-get install nano
+sudo nano /etc/rc.local</code></pre>
+<p>Then add <code>/sbin/iptables -I INPUT -p tcp --dport 8787 -j</code> to the end of the file. While I was editing the file, I also added <code>/sbin/iptables -I INPUT -p tcp --dport 4321 -j</code> to open up the port for Hugo. I’m switching to <code>blogdown</code> for my website and wanted to be able to easily get at the preview versions.</p>
+<p><em>update 2018-01-30:</em> Actually forgot to do this with my test of the xfce desktop and I had no trouble access the server. So, apparently not needed. I’m keep the instructions here mostly so I have access to them if other things (i.e.&nbsp;hugo) do require them.</p>
+</section>
+<section id="get-rstudio-server-running-and-access-it" class="level2">
+<h2 class="anchored" data-anchor-id="get-rstudio-server-running-and-access-it">Get RStudio server running and access it</h2>
+<p>Now you need to start up the server.</p>
+<pre><code>sudo rstudio-server start</code></pre>
+<p>Then in your browser you can access your RStudio Server with <code>localhost:8787</code></p>
+</section>
+<section id="draw-the-rest-of-fing-owl" class="level2">
+<h2 class="anchored" data-anchor-id="draw-the-rest-of-fing-owl">Draw the rest of f***ing owl</h2>
+<p>Apologies if you have seen the <a href="http://knowyourmeme.com/memes/how-to-draw-an-owl">“how to draw an owl” meme</a>. It feels appropriate at this point. What follows are all the things I had to add to get up and running with my standard set-up.</p>
+<p>First, let’s change the locale and add some needed tools</p>
+<pre><code>sudo locale-gen "en_US.UTF-8"
+sudo dpkg-reconfigure locales
+sudo apt-get install software-properties-common libxslt1-dev libcurl4-openssl-dev libssl-dev libssh2-1-dev</code></pre>
+<p>Next I needed to add the Ubuntu GIS repositories so I can get the up to date versions of <a href="">GDAL</a>, <a href="">GEOS</a>, etc.</p>
+<pre><code>sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update</code></pre>
+<p>And add my GISy libraries</p>
+<pre><code>sudo apt-get install libgdal-dev libproj-dev libudunits2-dev</code></pre>
+<p>Then we can add LaTeX</p>
+<pre><code>sudo apt-get install texlive texlive-latex-extra texlive-pictures</code></pre>
+<p>In my experience this is close to the minimal LaTeX install that will work with pandoc, R Markdown, etc.</p>
+<p>Lastly, some version control!</p>
+<pre><code>sudo apt-get install git</code></pre>
+<p>And then I configure git.</p>
+<pre><code>git config --global user.name "Your Name"
+git config --global user.email "your.email@email.com"
+git config --global credential.helper 'cache --timeout=28800'</code></pre>
+</section>
+<section id="day-to-day-use" class="level2">
+<h2 class="anchored" data-anchor-id="day-to-day-use">Day to day use</h2>
+<p>There is a way to have your chroot automatically boot with Chrome OS and RStudio Server is supposed to start on boot. For some reason, the server wasn’t kicking off when I started up the chroot. I didn’t track this down so don’t know if it will work. Seems like with some hacking it should.</p>
+<p>So given that I couldn’t get everything starting automagicaly, the simplest solution I came up with is to:</p>
+<ul>
+<li>start up my chromebook</li>
+<li>open crosh - ctrl-alt-t</li>
+<li>type <code>shell</code></li>
+<li>type <code>sudo enter-chroot</code></li>
+<li>type <code>sudo rstudio-server start</code></li>
+<li>type <code>localhost:8787</code> into a broswer tab.</li>
+</ul>
+<p>Another way to go with this is set up a couple of aliases in <code>~/.bashrc</code>. You can do this with:</p>
+<ul>
+<li>at your crosh shell: <code>vi ~/.bashrc</code></li>
+<li>add this to the file: <code>alias rstudio="sudo enter-chroot -n rstudio"</code></li>
+<li>now type in the shell <code>. ~/.bashrc</code>.<br>
+</li>
+<li>type <code>rstudio</code> in the shell. Once you enter your password, you will be in your chroot.</li>
+<li>enter some aliases for starting the server</li>
+<li>type <code>nano ~./bashrc</code></li>
+<li>add this: <code>alias rstudio="sudo rstudio-server start"</code></li>
+<li>type rstudio, enter password.</li>
+<li>type <code>localhost:8787</code> into a browser tab.</li>
+</ul>
+<p>The first time I get RStudio open I want to install all my usual suspects. With this set up I had no issues installing the following</p>
+<pre><code>pkgs &lt;- c("devtools","tidyverse","sf","raster","mapview","sp","rgdal","rgeos","roxygen2", "blogdown")
+
+lapply(pkgs, install.packages)</code></pre>
+<p>I then install my own packages, just so I have them handy</p>
+</section>
+<section id="one-little-hiccup" class="level2">
+<h2 class="anchored" data-anchor-id="one-little-hiccup">One little hiccup</h2>
+<p>The shutdown process is not super smooth on this (only problem I have identified so far). When your chromebook sleeps, or you shut down the chroot, etc. The R session and RStudio get confused. A scary error will pop-up when you try to get backin in and at this point, I can no longer switch between projects. When you select a new project it looks like it is switching, but ends keeping you at your root without a project. If you don’t use projects then this might not be an issue (but you do risk the <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/">arsonistic ire of Jenny Bryan</a>). If you do use projects this is a problem. I did find a very simple workaround for when this happens. All you need to do is start a new session. This can be done with the little red power button icon in the upper right corner of the window or with <a href="File:Quit" class="uri">File:Quit</a> Session.</p>
+<p><em>update 2018-01-30:</em> Using the xfce desktop install seems to have fixed this issue. No need to unnecessarily start new session now!</p>
+<p>So, there you have it. RStudio on a chromebook via RStudio Server running in a chroot! I am now very happy with the set-up and fully expect to stick with the Chromebook for some time to come.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

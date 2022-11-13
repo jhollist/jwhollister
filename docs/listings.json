@@ -3,7 +3,16 @@
     "listing": "/index.html",
     "items": [
       "/posts/post-with-code/index.html",
-      "/posts/welcome/index.html"
+      "/posts/welcome/index.html",
+      "/posts/what-goes-up-must-blogdown-version-3-or-4-of-jwhollister-com/index.html",
+      "/posts/rstudio-server-on-a-chromebook/index.html",
+      "/posts/chromebook-4-rstats/index.html",
+      "/posts/r-gis-lightning-demo/index.html",
+      "/posts/i-finally-got-quickmakr-up-on-cran/index.html",
+      "/posts/quickmapr-pre-release/index.html",
+      "/posts/organizing-photos-on-google-drive/index.html",
+      "/posts/category-feed/index.html",
+      "/posts/colophon/index.html"
     ]
   }
 ]
