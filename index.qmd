@@ -1,5 +1,5 @@
 ---
-title: "jwhollister"
+title: "Jeffrey W. Hollister"
 listing:
   contents: posts
   sort: "date desc"
@@ -8,5 +8,7 @@ listing:
   sort-ui: false
   filter-ui: false
 page-layout: full
-title-block-banner: true
+title-block-banner: false
 ---
+
+[Mastodon verification](https://fosstodon.org/@jhollist){rel="me" style="display: none;"}
