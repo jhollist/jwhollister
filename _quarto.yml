@@ -3,14 +3,14 @@ project:
   output-dir: docs
   
 website:
-  title: "jwhollister"
+  title: "Jeffrey W. Hollister"
   navbar:
     right:
       - about.qmd
+      - cv.qmd
+      - talks.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/jhollist
 format:
   html:
     theme: spacelab
