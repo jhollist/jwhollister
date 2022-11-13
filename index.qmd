@@ -10,3 +10,5 @@ listing:
 page-layout: full
 title-block-banner: false
 ---
+
+[Mastodon verification](https://fosstodon.org/@jhollist){rel="me" style="display: none;"}
