@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>jwhollister - About</title>
+<title>jwhollister - Selected Talks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,6 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -79,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page">About</a>
+    <a class="nav-link" href="./about.html">About</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
@@ -103,29 +104,40 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="profile.jpg" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Selected Talks</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
+
+    
+    
   </div>
-</header><main class="content" id="quarto-document-content">
-<p>I am a landscape ecologist with expertise in the spatial component of ecology and environmental sciences. I hold a Bachelor’s degree in Biology from Baker University, a Master’s Degree in Resource Ecology from Duke University, and a Ph. D. in Environmental Science from the University of Rhode Island. Since, May of 2006, I have worked as a Research Ecologist with the US EPA’s Atlantic Ecology Division in Narragansett, RI. My past experience is in applications of geospatial technologies (such as geographic information systems, spatial statistics, and remote sensing) to environmental research and broad scale environmental monitoring, modeling and assessment. Currently, my research focus is on how nutrients drive risk of cyanobacterial blooms in lakes and ponds. A unifying theme to my research is using Open Science (Open Access, Open Source, and Open Data) to benefit environmental science.</p>
+  
+
+</header>
+
+<ul>
+<li><strong><a href="https://usepa.github.io/github_101">Git, Github, and Cats</a></strong>: Multiple Venues, Multiple Dates.</li>
+<li><strong><a href="https://jhollist.github.io/lakes_landscapes_r">Lakes, Landscapes, and R</a></strong>: United States Chapter of the International Association of Landscape Ecology Annual Meeting, Chicago, IL, April 2018</li>
+<li><strong><a href="https://jhollist.github.io/microcystin_chla_talk">Using Chlorophyll <em>a</em> as a surrogate for exceeding Microcystin Health Advisory Concentrations</a></strong>: Cyanobacteria - Monitoring and Treating Drinking Water: A Workshop for Water Suppliers, Worcester, MA, December 2017</li>
+<li><strong><a href="https://jhollist.github.io/cyano_open_sci">An Open Science Framework for Research on Cyanobacteria in Lakes and Ponds</a></strong>: US EPA Region 7 Regional Office, Lenexa, KS, October 2017</li>
+<li><strong><a href="https://usepa.github.io/reproducible_lakes/">R packages as a reproducible framework for lake and cyanobacteria research</a></strong>: US EPA R User Group Annual Meeting, Washington, DC, September 2017</li>
+<li><strong><a href="https://usepa.github.io/cyano_open_sci_aag/">An Open Science Approach to Modeling and Visualizing Cyanobacteria Blooms in Lakes and Ponds</a></strong>: American Association of Geographsers Annual Meeting, Boston, MA, April 2017</li>
+<li><strong><a href="https://jhollist.github.io/open_science_neers/">Open Science: A Zealot’s View</a></strong>: Invited Symposium Speaker, “Emerging Issues and Novel Technologies in Coastal Ecosystem Science”, New England Estuarine Research Society Spring Meeting, Bristol, RI, April 2015</li>
+<li><strong><a href="https://jhollist.github.io/epablogpresent/">Blogging, Social Media, and Science: EPA Edition</a></strong>: USEPA Atlantic Ecology Division, Narragansett, RI, March 2014</li>
+<li><strong><a href="https://files.figshare.com/1829418/jwhLODPresent08152012_v2.pdf">Who am I and Why am I here: Lakes, Linked Data, and R</a></strong>: Data.gov Semantic Web and Linked Data working group, Webinar, Aug 2012</li>
+<li><strong><a href="https://files.figshare.com/1829419/jwhWCSUSeminar_v3.pdf">Nutrients, Ecosystem Services, and Human Health in Northeastern Lakes and Ponds</a></strong>: Invited Seminar at Western Connecticut State University, Dept of Biology Seminar Series, Danbury, CT, November 2011</li>
+</ul>
 
 
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="https://github.com/jhollist" class="about-link">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-</div>
-</div>
- <!-- /main -->
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -146,6 +158,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const clipboard = new window.ClipboardJS('.code-copy-button', {
     target: function(trigger) {
       return trigger.previousElementSibling;
